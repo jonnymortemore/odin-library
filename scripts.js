@@ -27,10 +27,15 @@ document.addEventListener('submit', (event) => {
     displayBooks();
 });
 
-document.querySelector("#showBookForm").addEventListener("click",  (e) => {
-    document.querySelector("form").hidden = false;
-
-
+document.querySelector("#showBookForm").addEventListener("click",  () => {
+    const form = document.querySelector("form");
+    if (form.className == "visible") {
+        form.className = "hidden";
+        return;
+    }
+    if (form.className == "hidden") {
+        form.className = "visible";
+    }
 });
 
 

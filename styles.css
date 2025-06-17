@@ -31,3 +31,30 @@ tr:nth-child(odd) {
 tr:nth-child(even) {
     background-color: cadetblue;
 }
+
+#showBookForm {
+    padding: 10px;
+    background-color: aliceblue;
+    border: solid 2px black;
+    border-radius: 4px;
+}
+
+form.visible {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    border: 2px solid grey;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+form.hidden {
+    display: none;
+}
+
+form * {
+    margin-bottom: 10px;
+}
