@@ -1,0 +1,33 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+table {
+    background-color: lightblue;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+table * {
+    border: 2px solid black;
+    text-align: center;
+    padding: 10px;
+}
+
+th {
+    background-color: whitesmoke;
+}
+
+tr:nth-child(odd) {
+    background-color: aquamarine;
+}
+
+tr:nth-child(even) {
+    background-color: cadetblue;
+}
