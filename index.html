@@ -19,6 +19,16 @@
                 </tr>
             </tbody>
         </table>
+        <button>Add Book</button>
+        <form id="newBookForm">
+            <label for="book-name">Book Name</label>
+            <input type="text" id="book-name" name="book-name" placeholder="Lord of the Rings..." required>
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" placeholder="J.R.R Tolkien" required>
+            <label for="pages">Pages</label>
+            <input type="number" id="pages" name="pages" placeholder="1" step="1" min="1" max="9999" required>
+            <button type="submit">Submit Book</button>
+        </form>
     </main>
 </body>
 </html>
