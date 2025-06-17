@@ -27,6 +27,12 @@ document.addEventListener('submit', (event) => {
     displayBooks();
 });
 
+document.querySelector("#showBookForm").addEventListener("click",  (e) => {
+    document.querySelector("form").hidden = false;
+
+
+});
+
 
 function addBookToLibrary(title, author, pages) {
     myLibrary.push(new Book(title, author, pages));
