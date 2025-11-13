@@ -3,16 +3,45 @@ addBookToLibrary("The Fellowship of the Ring", "J.R.R Tolkien", "1000");
 addBookToLibrary("The Expanse", " James S. A. Corey", "800");
 displayBooks();
 
-
-
-document.addEventListener('submit', (event) => {
+document.querySelector("#newBookForm").addEventListener("submit", (event) => {
     event.preventDefault();
-    const form = new FormData(event.target);
-    addBookToLibrary(form.get("book-name"), form.get("author"), form.get("pages"));
+    const formEl = event.target;
+    const bookName = document.querySelector("#book-name");
+    const author = document.querySelector("#author");
+    const pageNumbers = document.querySelector("#pages");
+
+    //clear old custom messages
+    bookName.setCustomValidity("");
+    author.setCustomValidity("");
+    pageNumbers.setCustomValidity("");
+
+    if (bookName.validity.valueMissing) {
+        bookName.setCustomValidity("you need to add a bookname!");
+    }
+
+    if (author.validity.valueMissing) {
+        author.setCustomValidity("you need to add a author!");
+    }
+
+    if (pageNumbers.validity.valueMissing) {
+        pageNumbers.setCustomValidity("add page numbers!")
+    }
+
+    if (!formEl.reportValidity()) {
+        return;
+    }
+
+    const form = new FormData(formEl);
+    addBookToLibrary(
+        form.get("book-name"),
+        form.get("author"),
+        form.get("pages")
+    );
     displayBooks();
+    formEl.reset();
 });
 
-document.querySelector("#showBookForm").addEventListener("click",  () => {
+document.querySelector("#showBookForm").addEventListener("click", () => {
     const form = document.querySelector("form");
     if (form.className == "visible") {
         form.className = "hidden";
@@ -22,10 +51,6 @@ document.querySelector("#showBookForm").addEventListener("click",  () => {
         form.className = "visible";
     }
 });
-
-    
-
-
 
 function Book(title, author, pages) {
     this.id = crypto.randomUUID();
@@ -39,7 +64,7 @@ function Book(title, author, pages) {
         } else {
             return "Book not read";
         }
-    }
+    };
 }
 
 function addBookToLibrary(title, author, pages) {
@@ -47,26 +72,26 @@ function addBookToLibrary(title, author, pages) {
 }
 
 function displayBooks() {
-    const bookDisplay = document.querySelector('tbody');
+    const bookDisplay = document.querySelector("tbody");
     document.querySelectorAll(".bookRow").forEach((el) => {
         el.remove();
-    })
+    });
     myLibrary.forEach((e) => {
-        const bookRow = document.createElement('tr');
-        const bookName = document.createElement('td');
-        const bookAuthor = document.createElement('td');
-        const bookPages = document.createElement('td');
-        const bookRead = document.createElement('td');
-        const button = document.createElement('button');
-        const buttonTd = document.createElement('td');
-        const buttonTdRead = document.createElement('td');
-        const buttonRead = document.createElement('button');
+        const bookRow = document.createElement("tr");
+        const bookName = document.createElement("td");
+        const bookAuthor = document.createElement("td");
+        const bookPages = document.createElement("td");
+        const bookRead = document.createElement("td");
+        const button = document.createElement("button");
+        const buttonTd = document.createElement("td");
+        const buttonTdRead = document.createElement("td");
+        const buttonRead = document.createElement("button");
 
         button.className = "deleteBook";
         button.innerText = "Delete Book";
         button.dataset.id = e.id;
         //event listener to delete row on click
-        button.addEventListener('click', (event) => {
+        button.addEventListener("click", (event) => {
             // loop through all book objects in array - on id match - splice list
             myLibrary.forEach((book, index) => {
                 console.log(book);
@@ -82,7 +107,7 @@ function displayBooks() {
         buttonRead.className = "setRead";
         buttonRead.innerText = "Set Read";
         buttonRead.dataset.id = e.id;
-        buttonRead.addEventListener('click', (event) => {
+        buttonRead.addEventListener("click", (event) => {
             // loop through all book objects in array - on id match - splice list
             myLibrary.forEach((book, index) => {
                 console.log(book);
@@ -94,10 +119,7 @@ function displayBooks() {
             displayBooks();
         });
 
-
-
         buttonTdRead.append(buttonRead);
-
 
         bookRow.className = "bookRow";
         bookName.innerText = e.title;
@@ -113,6 +135,4 @@ function displayBooks() {
         bookRow.append(buttonTd);
         bookDisplay.append(bookRow);
     });
-    
 }
-
